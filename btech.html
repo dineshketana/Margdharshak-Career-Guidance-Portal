@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>btech</title>
+	<link rel="stylesheet" href="engpage.css">
+	<style>
+	.navbar {
+            background: linear-gradient(to right, #52686d, #333);
+            color: #fff;
+            padding: 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .toggle-btn {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .navbar .brand {
+            color: white;
+            font-size: 28px;
+            margin-left: 10px;
+            font-family: "Dancing Script", cursive;
+        }
+        .navbar .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .sidebar, .profile-sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+            padding-top: 45px;
+            position: fixed;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.3s;
+            z-index: 999;
+        }
+        .sidebar {
+            left: -250px;
+        }
+        .profile-sidebar {
+            right: -250px;
+        }
+        .sidebar.active {
+            left: 0;
+        }
+        .profile-sidebar.active {
+            right: 0;
+        }
+        .sidebar .circular-image, .profile-sidebar .circular-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+            margin-bottom: 20px;
+        }
+        .sidebar .brand, .profile-sidebar .brand {
+            color: red;
+            font-size: 28px;
+        }
+        .sidebar .nav-links, .profile-sidebar .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .sidebar .nav-links li, .profile-sidebar .nav-links li {
+            margin-bottom: 20px;
+        }
+        .sidebar .nav-links a, .profile-sidebar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+        .sidebar .nav-links a:hover, .profile-sidebar .nav-links a:hover {
+            background-color: #555;
+        }
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropbtn {
+			background-color: #eef8f5;
+			color: #333;
+			padding: 10px;
+			border: none;
+			cursor: pointer;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #fff;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+			z-index: 1;
+		}
+
+		.dropdown-content a {
+			color: #333;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+		}
+
+		.dropdown-content a:hover {
+			background-color: #f7f7f7;
+		}
+
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+
+		.dropdown:hover .dropbtn {
+			background-color: #f7f7f7;
+		}
+
+		.logo {
+			width: 70px;
+			height: 70px;
+			margin-left: auto;
+		}
+
+		/* Cards styles */
+		.cards {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-gap: 20px;
+			padding: 30px;
+		}
+
+		.card {
+			background-color: #dfe5e6;
+			padding: 30px;
+			border-radius: 15px;
+			box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			min-height: 200px;
+			position: relative;
+		}
+
+		.card h2 {
+			margin-bottom: 20px;
+		}
+
+		.popup {
+			display: none;
+			position: absolute;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			z-index: 1;
+		}
+
+		.cards {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-gap: 20px;
+			padding: 30px;
+			perspective: 900px;
+
+		}
+
+		.card {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			transition: 0.5s all ease;
+			transform: rotateX(20deg) scale(0.7);
+			box-shadow: 0px 20px 50px #555;
+			animation: entry 1s linear 1;
+		}
+
+		.card:hover {
+			cursor: pointer;
+			transform: rotate(0deg) scale(1) translateY(10px);
+			transition: 0.5s all ease-out;
+			z-index: 400;
+		}
+
+		.card .popup {
+			position: absolute;
+			top: 0%;
+			width: 100%;
+			height: 100%;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			z-index: 1;
+			display: none;
+		}
+
+		.card:hover .popup {
+			display: block;
+		}
+
+		body {
+			background: linear-gradient(to left, #3A8EA0, #333);
+		}
+
+		#card1 {
+			background-image: url("assets/cse.jpg");
+
+		}
+
+		#card2 {
+			background-image: url("assets/it.jpg");
+		}
+
+		#card3 {
+			background-image: url("assets/Mech.jpg");
+		}
+
+		#card4 {
+			background-image: url("assets/Marine.jpg");
+		}
+
+		#card5 {
+			background-image: url("assets/ece.jpg");
+		}
+
+		#card6 {
+			background-image: url("assets/EEE.jpg");
+		}
+
+		#card7 {
+			background-image: url("assets/civ.jpg");
+		}
+
+		#card8 {
+			background-image: url("assets/chem.jpg");
+		}
+        .foot{
+            background: linear-gradient(to right, #52686d, #333);
+            text-align: center;
+            font-size:16px;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            padding:2px;
+        }
+		/* Add other styles as needed */
+	</style>
+</head>
+
+<body>
+	<div class="navbar">
+        <button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button>
+        <span class="brand">MARG-DHARSHAK</span>
+        <img class="profile-pic" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture" onclick="toggleProfileSidebar()">
+    </div>
+
+	
+    <div class="sidebar" id="sidebar">
+        <img class="circular-image" src="assets/Marg_dharshak.jpg" alt="MARG-DHARSHAK"/>
+        <ul class="nav-links">
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="/home.html">About</a></li>
+            <li><a href="/careers.html">Career</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="mailto:bailapudigopisuvarna@gmail.com?">Feedback</a></li>
+        </ul>
+    </div>
+
+    <div class="profile-sidebar" id="profile-sidebar">
+        <img class="circular-image" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture"/>
+        <ul class="nav-links">
+            <li><a href="/profile.html">My Profile</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="/SIH_registration.html">Logout</a></li>
+        </ul>
+    </div>
+	
+	<div class="cards">
+		<div class="card" id="card1">
+			<h1>Computer Science and Engineering</h1>
+			<div class="popup">
+				<h2>About:</h2> 
+				<p style="font-size: 16px;">Computer science and engineering (CSE) is an academic program at many
+					universities which comprises
+					approaches of computer science and computer engineering. There is no clear division in computing
+					between science and engineering, just like in the field of materials science and engineering.</p>
+	
+				<h2>Fields:</h2>
+				<ol style="font-size: 16px;">
+					<li><a href="#">Artificial Intelligence</a></li>
+					<li><a href="#">Data Science</a></li>
+					<li><a href="#">Cybersecurity</a></li>
+				</ol>
+			</div>
+		</div>
+		<div class="card" id="card2">
+			<h1>Information Technology</h1>
+			<div class="popup">
+				<h2>About:</h2>
+				<p style="font-size: 16px;">Information technology (IT) is a set of related fields that encompass computer systems, software,
+					programming languages, and data and information processing, and storage.[1] IT forms part of
+					information and communications technology (ICT).</p>
+				<h1>Fields:</h1>
+				<ol style="font-size: 16px;">
+					<li><a href="#">Computer Networks</a></li>
+					<li><a href="#">Database Management</a></li>
+					<li><a href="#">Software Engineering</a></li>
+				</ol>
+			</div>
+		</div>
+		<div class="card" id="card3">
+			<h1>Mechanical Engineering</h1>
+			<div class="popup">
+				<h2>Fields:</h2>
+				<p>Field 1: Thermodynamics</p>
+				<p>Field 2: Mechanics of Solids</p>
+				<p>Field 3: Fluid Mechanics</p>
+			</div>
+		</div>
+		<div class="card" id="card4">
+			<h1>Marine Engineering</h1>
+			<div class="popup">
+				<h2>Fields:</h2>
+				<p>Field 1: Ship Design</p>
+				<p>Field 2: Marine Propulsion</p>
+				<p>Field 3: Offshore Engineering</p>
+			</div>
+		</div>
+		<div class="card" id="card5">
+			<h1>Electronics and Communication Engineering</h1>
+			<div class="popup">
+				<h2>Fields:</h2>
+				<p>Field 1: Microelectronics</p>
+				<p>Field 2: Telecommunication</p>
+				<p>Field 3: Control Systems</p>
+			</div>
+		</div>
+		<div class="card" id="card6">
+			<h1>Electrical and Electronics Engineering</h1>
+			<div class="popup">
+				<h2>Fields:</h2>
+				<p>Field 1: Electric Circuits</p>
+				<p>Field 2: Electromagnetics</p>
+				<p>Field 3: Control Systems</p>
+			</div>
+		</div>
+		<div class="card" id="card7">
+			<h1>Civil Engineering</h1>
+			<div class="popup">
+				<h2>Fields:</h2>
+				<p>Field 1: Structural Analysis</p>
+				<p>Field 2: Transportation Engineering</p>
+				<p>Field 3: Water Resources</p>
+			</div>
+		</div>
+		<div class="card" id="card8">
+			<h1>Chemical Engineering</h1>
+			<div class="popup">
+				<h2>Fields:</h2>
+				<p>Field 1: Process Control</p>
+				<p>Field 2: Thermodynamics</p>
+				<p>Field 3: Chemical Reaction Engineering</p>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const cards = document.querySelectorAll('.card');
+
+		cards.forEach((card) => {
+			const popup = card.querySelector('.popup');
+
+			card.addEventListener('click', () => {
+				popup.style.display = 'block';
+			});
+
+			popup.addEventListener('click', (e) => {
+				if (e.target === popup) {
+					popup.style.display = 'none';
+				}
+			});
+
+			// Add this event listener to close the popup when clicking outside of it
+			document.addEventListener('click', (e) => {
+				if (!popup.contains(e.target) && !card.contains(e.target)) {
+					popup.style.display = 'none';
+				}
+			});
+		});
+
+	</script>
+
+	
+<footer class="foot">
+	<p>&copy Copyright 2024 www.margdharshak.com. All rights reserved. Developed by Tech Titans</p>
+</footer>
+
+<script>
+	function toggleSidebar() {
+		var sidebar = document.getElementById("sidebar");
+		sidebar.classList.toggle("active");
+	}
+
+	function toggleProfileSidebar() {
+		var profileSidebar = document.getElementById("profile-sidebar");
+		profileSidebar.classList.toggle("active");
+	}
+</script>
+</body>
+
+</html>

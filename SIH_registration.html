@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            margin: 0;
+            background-image: url("assets/bg1.jpeg.jpg");
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.6);
+            width: 450px;
+            padding: 14px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: absolute;
+            left: 10%;
+            transform: translateX(-25%);
+        }
+
+        .circular-image {
+            width: 100px;
+            /* Adjust the size as needed */
+            height: 100px;
+            /* Make sure height and width are the same */
+            border-radius: 50%;
+            /* Makes the image circular */
+            object-fit: cover;
+            /* Ensures the image covers the area without distortion */
+            border: 2px solid #fff;
+            /* Optional: adds a white border around the image */
+        }
+
+        #heading {
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            padding: 12px 0;
+            color: #333;
+        }
+
+        .image {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .image:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .input-item {
+            width: calc(100% - 32px);
+            border: 1px solid lightgray;
+            border-radius: 25px;
+            font-size: 16px;
+            padding: 10px 16px;
+            margin: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .input-item::placeholder {
+            color: #aaa;
+            opacity: 1;
+        }
+
+        .input-item:focus {
+            border-color: blue;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 0, 255, 0.5);
+        }
+
+        #reg {
+            background-color: blue;
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        #reg:hover {
+            background-color: darkblue;
+        }
+
+        #bgc {
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="process_form.php" method="post">
+        <img class="circular-image" src="assets/Marg_dharshak.jpg" alt="MARG-DHARSHAK" />
+        <h1 id="heading">JOIN MARG-DHARSHAK</h1>
+        <div id="bgc">
+
+            <a href="https://accounts.google.com/signin" target="_blank">
+                <img class="image" src="https://cdn-icons-png.flaticon.com/128/2702/2702602.png" alt="Google Sign-In" />
+            </a>
+            <a href="https://github.com/login" target="_blank">
+                <img class="image" src="https://cdn-icons-png.flaticon.com/128/2111/2111432.png" alt="GitHub Sign-In" />
+            </a>
+            <a href="https://www.linkedin.com/login" target="_blank">
+                <img class="image" src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="LinkedIn Sign-In" />
+            </a>
+        </div>
+
+        <input class="input-item" type="text" name="Firstname" placeholder="First Name">
+        <input class="input-item" type="text" name="Lastname" placeholder="Last Name">
+        <input class="input-item" type="password" name="password" placeholder="Password">
+        <input class="input-item" type="password" name="confrimpassword" placeholder="Confirm Password">
+        <input class="input-item" type="email" name="email" placeholder="E-mail">
+        <input class="input-item" type="tel" name="Contact" placeholder="Contact">
+        <input id="reg" type="submit" name="register" value="Register" onclick="location.href='/SIH_Login.html';">
+        <br>
+        <label style="font-size: medium;">Marg-dharshak member?</label> <button><a href="SIH_Login.html" type="submit">Sign-In</a> </button>
+    </form>
+</body>
+
+</html>

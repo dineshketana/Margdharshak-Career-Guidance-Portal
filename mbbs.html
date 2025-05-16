@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBBS Departments</title>
+    <style>
+        body {
+            background: linear-gradient(to left, #3A8EA0, #333);
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            background: linear-gradient(to right, #52686d, #333);
+            color: #fff;
+            padding: 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .toggle-btn {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .navbar .brand {
+            color: white;
+            font-size: 28px;
+            margin-left: 10px;
+            font-family: "Dancing Script", cursive;
+        }
+        .navbar .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .sidebar, .profile-sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+            padding-top: 45px;
+            position: fixed;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.3s;
+            z-index: 999;
+        }
+        .sidebar {
+            left: -250px;
+        }
+        .profile-sidebar {
+            right: -250px;
+        }
+        .sidebar.active {
+            left: 0;
+        }
+        .profile-sidebar.active {
+            right: 0;
+        }
+        .sidebar .circular-image, .profile-sidebar .circular-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+            margin-bottom: 20px;
+        }
+        .sidebar .brand, .profile-sidebar .brand {
+            color: red;
+            font-size: 28px;
+        }
+        .sidebar .nav-links, .profile-sidebar .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .sidebar .nav-links li, .profile-sidebar .nav-links li {
+            margin-bottom: 20px;
+        }
+        .sidebar .nav-links a, .profile-sidebar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+        .sidebar .nav-links a:hover, .profile-sidebar .nav-links a:hover {
+            background-color: #555;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 20px;
+            padding: 50px;
+            flex: 1;
+        }
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+            cursor: pointer;
+            position: relative;
+            border: 3px solid transparent;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.2);
+            border: 3px solid #2f5d62;
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #2f5d62;
+            transition: filter 0.3s;
+        }
+        .card:hover img {
+            filter: brightness(0.8);
+        }
+        .card h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #2f5d62;
+            font-size: 22px;
+            margin: 20px 0 10px;
+            margin-top: 5%;
+            text-align: center;
+        }
+        .card p {
+            color: #666;
+            font-size: 16px;
+            text-align: center;
+            padding: 0 15px 15px;
+        }
+        .card .popup-content {
+            display: none;
+            background-color: white;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 30px;
+            border-radius: 10px;
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 80%; 
+            height: auto;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            visibility: hidden;
+        }
+        .card:hover .popup-content {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
+        .foot{
+            background: linear-gradient(to right, #52686d, #333);
+            text-align: center;
+            font-size:16px;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            padding:2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button>
+        <span class="brand">MARG-DHARSHAK</span>
+        <img class="profile-pic" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture" onclick="toggleProfileSidebar()">
+    </div>
+    <div class="sidebar" id="sidebar">
+        <img class="circular-image" src="assets/Marg_dharshak.jpg" alt="MARG-DHARSHAK"/>
+        <ul class="nav-links">
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="/home.html">About</a></li>
+            <li><a href="/careers.html">Career</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="mailto:bailapudigopisuvarna@gmail.com?">Feedback</a></li>
+        </ul>
+    </div>
+
+    <div class="profile-sidebar" id="profile-sidebar">
+        <img class="circular-image" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture"/>
+        <ul class="nav-links">
+            <li><a href="/profile.html">My Profile</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="/SIH_registration.html">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <img src="assets/pharmacology.jpeg" alt="Pharmacology">
+            <h2>Pharmacology</h2>
+            <div class="popup-content">
+                <p>Pharmacology is the study of drugs and their effects on living organisms.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/anatomy.jpg" alt="Anatomy">
+            <h2>Anatomy</h2>
+            <div class="popup-content">
+                <p>Anatomy is the study of the structure and organization of living things.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/biochem.jpeg" alt="Biochemistry">
+            <h2>Biochemistry</h2>
+            <div class="popup-content">
+                <p>Biochemistry is the study of the chemical processes that occur within living organisms.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/patho.webp" alt="Pathology">
+            <h2>Pathology</h2>
+            <div class="popup-content">
+                <p>Pathology is the study of the causes and effects of diseases.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/microbiology.jpeg" alt="Microbiology">
+            <h2>Microbiology</h2>
+            <div class="popup-content">
+                <p>Microbiology involves the study of microorganisms such as bacteria, viruses, fungi, and parasites.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/Physiology.jpeg" alt="Physiology">
+            <h2>Physiology</h2>
+            <div class="popup-content">
+                <p>Physiology focuses on the normal functions of living organisms and their parts.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/forn.jpg" alt="Forensic Medicine">
+            <h2>Forensic Medicine</h2>
+            <div class="popup-content">
+                <p>Forensic Medicine applies medical knowledge to legal issues and investigations.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/opth.jpeg" alt="Ophthalmology">
+            <h2>Ophthalmology</h2>
+            <div class="popup-content">
+                <p>Ophthalmology deals with the diagnosis and treatment of eye disorders.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/anes.jpg" alt="Anesthesiology">
+            <h2>Anesthesiology</h2>
+            <div class="popup-content">
+                <p>Anesthesiology is concerned with the total perioperative care of patients before, during, and after surgery.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="assets/derma.jpg" alt="Dermatology">
+            <h2>Dermatology</h2>
+            <div class="popup-content">
+                <p>Dermatology focuses on diseases of the skin, hair, and nails in both children and adults.</p>
+            </div>
+        </div>
+        <div class="card">
+        <img src="assets/Gynecologist.jpeg" alt="Gynecology">
+        <h2>Gynecology</h2>
+        <div class="popup-content">
+            <p>Gynaecology is the area of medicine that involves the treatment of women's diseases, especially those of the reproductive organs.</p>
+        </div>
+        </div>
+        <div class="card">
+        <img src="assets/Neurosurgery.jpeg" alt="Neurosurgery">
+        <h2>Neurosurgery</h2>
+        <div class="popup-content">
+            <p>Neurosurgery is the medical specialty concerned with the surgical treatment of disorders which affect any portion of the nervous system.</p>
+        </div>
+        </div>
+        <div class="card">
+            <img src="assets/Orthopedic.jpeg" alt="Orthopedics">
+            <h2>Orthopedics</h2>
+            <div class="popup-content">
+                <p>Orthopedics is a branch of medicine that focuses on the care of the skeletal system and its interconnecting parts.</p>
+            </div>
+        </div>
+        <div class="card">
+        <img src="assets/cardio.jpg" alt="Cardiology">
+        <h2>Cardiology</h2>
+        <div class="popup-content">
+            <p> Cardiology is a branch of medicine that deals with disorders of the heart and the cardiovascular system. </p>
+        </div>
+        </div>
+        <div class="card">
+        <img src="assets/internal.jpeg" alt="Internal Medicine">
+        <h2>Internal Medicine</h2>
+        <div class="popup-content">
+            <p>Internal medicine is a medical specialty for medical doctors focused on the prevention, diagnosis, and treatment of internal diseases in adults.</p>
+        </div>
+        </div>
+    </div>
+    <footer class="foot">
+        <p>&copy Copyright 2024 www.margdharshak.com. All rights reserved. Developed by Tech Titans</p>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+        }
+
+        function toggleProfileSidebar() {
+            var profileSidebar = document.getElementById("profile-sidebar");
+            profileSidebar.classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>

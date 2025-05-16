@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>non coding</title>
+	<style>
+		/* Global styles */
+		* {
+			margin: 0;
+		}
+		body{
+
+			margin: 0;
+            padding: 0;
+            background: linear-gradient(to left, #3A8EA0, #333);
+            font-family: Arial, sans-serif;
+            transition: margin-left 0.3s;
+            overflow-x: hidden;
+        }
+        .navbar {
+            background: linear-gradient(to right, #52686d, #333);
+            color: #fff;
+            padding: 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .toggle-btn {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .navbar .brand {
+            color: white;
+            font-size: 28px;
+            margin-left: 10px;
+            font-family: "Dancing Script", cursive;
+        }
+        .navbar .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .sidebar, .profile-sidebar {
+            width: 200px;
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+            padding-top: 45px;
+            position: fixed;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.3s;
+            z-index: 999;
+        }
+        .sidebar {
+            left: -250px;
+        }
+        .profile-sidebar {
+            right: -250px;
+        }
+        .sidebar.active {
+            left: 0;
+        }
+        .profile-sidebar.active {
+            right: 0;
+        }
+        .sidebar .circular-image, .profile-sidebar .circular-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+            margin-bottom: 20px;
+        }
+        .sidebar .brand, .profile-sidebar .brand {
+            color: red;
+            font-size: 28px;
+        }
+        .sidebar .nav-links, .profile-sidebar .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+        }
+        .sidebar .nav-links li, .profile-sidebar .nav-links li {
+            margin-bottom: 20px;
+        }
+        .sidebar .nav-links a, .profile-sidebar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+        .sidebar .nav-links a:hover, .profile-sidebar .nav-links a:hover {
+            background-color: #555;
+        }
+
+		/* Card styles */
+		.cards {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			grid-gap: 20px;
+			padding: 30px;
+		}
+
+		.card {
+			padding: 30px;
+			border-radius: 15px;
+			box-shadow: 0px 0px 15px rgba(0,0,0,0.05);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			min-height: 200px;
+		}
+
+		.card h2 {
+			font-size: 22px;
+			margin-bottom: 10px;
+			font-weight: bold;
+			color: black;
+		}
+
+		.card:hover {
+			transform: scale(1.05);
+			box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+		}
+
+		/* Sibling fade styles */
+		.sibling-fade {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.sibling-fade > * {
+			background: rgba(167, 137, 137, 0.438);
+			padding: 1em;
+			flex: auto;
+			margin: 0.3em;
+			text-align: center;
+			color: #7cda93;
+			font-size: 1.5em;
+			text-decoration: none;
+			transition: opacity 150ms linear 100ms, transform 150ms ease-in-out 100ms;
+		}
+
+		.sibling-fade:hover > * {
+			opacity: 0.4;
+			transform: scale(0.9);
+		}
+
+		.sibling-fade > *:hover {
+			opacity: 1;
+			transform: scale(1);
+			transition-delay: 0ms, 0ms;
+		}
+		.foot{
+            background: linear-gradient(to right, #52686d, #333);
+            text-align: center;
+            font-size:16px;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            padding:2px;
+        }
+	</style>
+</head>
+<body>
+	<div class="navbar">
+        <button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button>
+        <span class="brand">MARG-DHARSHAK</span>
+        <img class="profile-pic" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture" onclick="toggleProfileSidebar()">
+    </div>
+
+	<div class="sidebar" id="sidebar">
+        <img class="circular-image" src="assets/Marg_dharshak.jpg" alt="MARG-DHARSHAK"/>
+        <ul class="nav-links">
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="/home.html">About</a></li>
+            <li><a href="/careers.html">Career</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="mailto:bailapudigopisuvarna@gmail.com?">Feedback</a></li>
+        </ul>
+    </div>
+
+    <div class="profile-sidebar" id="profile-sidebar">
+        <img class="circular-image" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture"/>
+        <ul class="nav-links">
+            <li><a href="/profile.html">My Profile</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="/SIH_registration.html">Logout</a></li>
+        </ul>
+    </div>
+	<h1 style="text-align: center;">NON-CODING</h1>
+	<div class="sibling-fade">
+		<!-- Add all the cards here -->
+		<div class="card">
+			<h2>Data Analysis</h2>
+		</div>
+		<div class="card">
+			<h2>Business Analyst</h2>
+		</div>
+        <div class="card">
+			<h2>User Experience Design</h2>
+		</div>
+		<div class="card">
+			<h2>Digital Marketing</h2>
+		</div>
+		<div class="card">
+			<h2>Product Management</h2>
+		</div>
+		<div class="card">
+			<h2>Information Security</h2>
+		</div>
+		<div class="card">
+			<h2>Sales</h2>
+		</div>
+		<div class="card">
+			<h2>Technical Recruiter</h2>
+		</div>
+		<div class="card">
+			<h2>SEO</h2>
+		</div>
+		<div class="card">
+			<h2>Client Manager</h2>
+		</div>
+		<div class="card">
+			<h2>Cybersecurity</h2>
+		</div>
+		<div class="card">
+			<h2>Marketing</h2>
+		</div>
+		<div class="card">
+			<h2>Scrum Master</h2>
+            </div>
+            <div class="card">
+                <h2>Project Manager</h2>
+            </div>
+            <div class="card">
+                <h2>Technology Journalism</h2>
+            </div>
+            <div class="card">
+                <h2>Software Testing</h2>
+            </div>
+            <div class="card">
+                <h2>Information Architecture</h2>
+            </div>
+            <div class="card">
+                <h2>All Bookmaries</h2>
+            </div>
+            <div class="card">
+                <h2>HNIQUE</h2>
+            </div>
+            <div class="card">
+                <h2>Search Engine Optimization</h2>
+            </div>
+        </div>
+		<footer class="foot">
+			<p>&copy Copyright 2024 www.margdharshak.com. All rights reserved. Developed by Tech Titans</p>
+		</footer>
+	
+		<script>
+			function toggleSidebar() {
+				var sidebar = document.getElementById("sidebar");
+				sidebar.classList.toggle("active");
+			}
+	
+			function toggleProfileSidebar() {
+				var profileSidebar = document.getElementById("profile-sidebar");
+				profileSidebar.classList.toggle("active");
+			}
+		</script>
+    </body>
+    </html>

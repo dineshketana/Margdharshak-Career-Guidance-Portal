@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Placements</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to left, #3A8EA0, #333);
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #52686d, #333);
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar .toggle-btn {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .navbar .brand {
+            color: #fff;
+            font-size: 28px;
+            margin-left: 10px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .navbar .profile-pic {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .sidebar, .profile-sidebar {
+            width: 220px;
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+            padding-top: 60px;
+            position: fixed;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.3s;
+            z-index: 999;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar {
+            left: -220px;
+        }
+
+        .profile-sidebar {
+            right: -220px;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .profile-sidebar.active {
+            right: 0;
+        }
+
+        .sidebar .circular-image, .profile-sidebar .circular-image {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .nav-links, .profile-sidebar .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .sidebar .nav-links li, .profile-sidebar .nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar .nav-links a, .profile-sidebar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar .nav-links a:hover, .profile-sidebar .nav-links a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 120px auto;
+            width: 85%;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #fff;
+            color: #333;
+            width: 30%;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: #52686d;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .card img {
+            height: 150px;
+            width: 150px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .foot {
+            background: linear-gradient(to right, #52686d, #333);
+            text-align: center;
+            font-size: 16px;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button>
+        <span class="brand">MARG-DHARSHAK</span>
+        <img class="profile-pic" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture" onclick="toggleProfileSidebar()">
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <img class="circular-image" src="assets/Marg_dharshak.jpg" alt="MARG-DHARSHAK"/>
+        <ul class="nav-links">
+            <li><a href="/home.html">Home</a></li>
+            <li><a href="/home.html">About</a></li>
+            <li><a href="#">Career</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="mailto:bailapudigopisuvarna@gmail.com?">Feedback</a></li>
+        </ul>
+    </div>
+
+    <div class="profile-sidebar" id="profile-sidebar">
+        <img class="circular-image" src="https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png" alt="Profile Picture"/>
+        <ul class="nav-links">
+            <li><a href="/profile.html">My Profile</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="/SIH_registration.html">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="cards-container">
+        <div class="card" onclick="location.href='/coding.html';">  
+            <!-- Coding.html -->
+            <img src="assets/coding.jpg" alt="10">
+            <h2>Coding</h2>
+            <p>Web developer</br>Data Science</br>Cloud Engineer</p>
+        </div>
+        <div class="card" onclick="location.href='/noncoding.html';">
+              <!-- nonCoding.html -->
+            <img src="assets/no code.png" alt="11">
+            <h2>Non Coding</h2>
+            <p>Graphic Design</br>Network Security</br>Project Management</p>
+            
+        </div>
+        <div class="card" onclick="location.href='#';">
+              <!-- Core.html -->
+            <img src="assets/core.png" alt="grad">
+            <h3>Core</h3>
+            <p>VLSA</br>Embedded Systems</br>Automotive Engineering</p>
+        </div>
+    </div>
+
+    <footer class="foot">
+        &copy; Copyright 2024 www.margdharshak.com. All rights reserved. Developed by Tech Titans
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("active");
+        }
+
+        function toggleProfileSidebar() {
+            var profileSidebar = document.getElementById("profile-sidebar");
+            profileSidebar.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>

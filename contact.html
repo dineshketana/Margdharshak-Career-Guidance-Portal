@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+    <style>
+        body {
+            margin: 0;
+            background-image:linear-gradient(to right, rgb(68, 132, 141), rgb(181, 195, 195));
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            height: 100vh;
+            overflow: hidden; 
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.6);
+            width: 450px;
+            padding: 14px;
+            border-radius: 12px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            text-align: center;
+            position:absolute; 
+            left: 42%; 
+            transform: translateX(-25%); 
+        }
+
+        #heading {
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            padding: 12px 0;
+            color: #333;
+        }
+
+        .input-item {
+            width: calc(100% - 32px);
+            border: 1px solid lightgray;
+            border-radius: 25px; 
+            font-size: 16px;
+            padding: 10px 16px; 
+            margin: 8px 0;
+            transition: all 0.3s ease; 
+        }
+
+        .input-item::placeholder {
+            color: #aaa; 
+            opacity: 1; 
+        }
+
+        .input-item:focus {
+            border-color: blue; 
+            outline: none; 
+            box-shadow: 0 0 8px rgba(0, 0, 255, 0.5); 
+        }
+
+        #reg {
+            background-color: blue;
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px; 
+            cursor: pointer;
+            margin-top: 16px;
+            transition: background-color 0.3s ease; 
+        }
+
+        #reg:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h1 id="heading">Contact us Form</h1>
+        <input class="input-item" type="text" name="Name" placeholder="Name">
+        <input class="input-item" type="email" name="e-mail" placeholder="E-mail">
+        <input class="input-item" type="tel" name="Contact" placeholder="Contact">
+        <textarea name="textarea-field" rows="10" cols="55" placeholder="Message"></textarea>
+        <input id="reg" type="submit" name="Submit" value="Submit">
+        <br>
+        After submitting form, we will contact you shortly!
+    </form>
+</body>
+</html>
