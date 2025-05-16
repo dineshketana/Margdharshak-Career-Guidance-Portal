@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Categories</title>
+	<style>
+		/* Navbar styles */
+		.navbar {
+			background-color: #4d406d;
+			color: #fff;
+			padding: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 18px;
+		}
+		
+		.navbar ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+		}
+		
+		.navbar li {
+			margin-right: 30px;
+			position: relative;
+		}
+		
+		.navbar a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 18px;
+		}
+		
+		.dropdown {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			background-color: #9b8080;
+			padding: 10px;
+			border-radius: 5px;
+			display: none;
+		}
+		
+		.dropdown a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 16px;
+			display: block;
+			margin-bottom: 10px;
+		}
+		
+		.dropdown a:hover {
+			background-color: #c7bbbb;
+			padding: 10px;
+			border-radius: 5px;
+		}
+		
+		.navbar li:hover .dropdown {
+			display: block;
+		}
+		
+		/* Cards styles */
+		.cards {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-gap: 20px;
+			padding: 30px;
+		}
+		
+		.card {
+			background-color: #dde3f3c2;
+			padding: 30px;
+			border-radius: 15px;
+			box-shadow: 0px 0px 15px rgba(107, 120, 139, 0.1);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			min-height: 200px;
+		}
+		
+		.card h2 {
+			font-family: 'Montserrat', sans-serif;
+			font-weight: bold;
+			color: #333;
+			font-size: 22px;
+			margin-bottom: 10px;
+		}
+		
+		.card:hover {
+			transform: scale(1.05);
+			box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar">
+		<ul>
+			<li>
+				<a href="#">Menu</a>
+				<div class="dropdown">
+					<a href="#">Home</a>
+					<a href="#">About</a>
+					<a href="#">Contact</a>
+				</div>
+			</li>
+		</ul>
+		<img src="logo.png" alt="Logo" class="logo" style="width: 70px; height: 70px; margin-left: auto;">
+	</nav>
+	<div class="cards">
+		<!-- Add all the cards here -->
+		<div class="card">
+			<h2>Network Administrator</h2>
+		</div>
+		<div class="card">
+			<h2>Computer Network Architects</h2>
+		</div>
+        <div class="card">
+			<h2>Database Administrator</h2>
+		</div>
+		<div class="card">
+			<h2>Architecture</h2>
+		</div>
+		<div class="card">
+			<h2>Network Programmer</h2>
+		</div>
+		<div class="card">
+			<h2>Network Specialist</h2>
+		</div>
+		<div class="card">
+			<h2>Field Support Engineer</h2>
+		</div>
+		<div class="card">
+			<h2>Junior Network Engineer</h2>
+		</div>
+		<div class="card">
+			<h2>Network Manager</h2>
+		</div>
+		<div class="card">
+			<h2>Telecommunications Specialist</h2>
+		</div>
+		<div class="card">
+			<h2>Software Engineer</h2>
+		</div>
+		<div class="card">
+			<h2>Network Architect</h2>
+		</div>
+		<div class="card">
+			<h2>Cyber Security Specialist</h2>
+		</div>
+		<div class="card">
+			<h2>Data Analyst</h2>
+            </div>
+            <div class="card">
+                <h2>IT Project Manager</h2>
+            </div>
+            <div class="card">
+                <h2>Network Consultant</h2>
+            </div>
+            
+            <div class="card">
+                <h2>Database Administrator</h2>
+            </div>
+            <div class="card">
+                <h2>Architecture</h2>
+            </div>
+            <div class="card">
+                <h2>Network Programmer</h2>
+            </div>
+            <div class="card">
+                <h2>Network Specialist</h2>
+            </div>
+            <div class="card">
+                <h2>Field Support Engineer</h2>
+            </div>
+            <div class="card">
+                <h2>Junior Network Engineer</h2>
+            </div>
+        </div>
+    </body>
+    </html>

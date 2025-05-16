@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nav Bar</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		.navbar {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.search-bar {
+			padding: 10px;
+			border: none;
+			border-radius: 10px;
+			margin-right: 20px;
+		}
+		.dropdown {
+			position: relative;
+			display: inline-block;
+			margin-right: 20px;
+			background-color: transparent;
+			border: none;
+		}
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #333;
+			min-width: 100px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+		}
+		.dropdown-content a {
+			color: #fff;
+			padding: 10px;
+			text-decoration: none;
+			display: block;
+		}
+		.dropdown-content a:hover {
+			background-color: #555;
+		}
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+		.dropdown:hover {
+			background-color: transparent;
+			border: none;
+		}
+		.brand {
+			color: red;
+			margin-left: 20px;
+			font-size: 28px;
+		}
+		.nav-links {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+		}
+		.nav-links li {
+			margin-right: 30px;
+		}
+		.nav-links a {
+			color: #fff;
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="navbar">
+		<span class="brand">Marg-Dharshak</span>
+		<div style="flex-grow: 1;"></div>
+		<form>
+			<input type="search" class="search-bar" placeholder="Search...">
+		</form>
+		<div class="dropdown">
+			<button style="background-color: transparent; border: none; color: #fff;">Career</button>
+			<div class="dropdown-content">
+				<a href="#">BTech</a>
+				<a href="#">MTech</a>
+				<a href="#">MBA</a>
+				<a href="#">MBBS</a>
+			</div>
+		</div>
+		<ul class="nav-links">
+			<li><a href="#">Contact</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Home</a></li>
+		</ul>
+	</div>
+</body>
+</html>
